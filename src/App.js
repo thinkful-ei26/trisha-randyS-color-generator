@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from './Button';
-import RedBox from './red-box';
-import GreenBox from './green-box';
 import BlueBox from './blue-box';
+import GreenBox from './green-box';
+import RedBox from './red-box';
+import './app.css'
 
 export default class App extends React.Component {
 
@@ -21,7 +22,6 @@ export default class App extends React.Component {
   }
 
   handleClick() {
-    console.log('click')
     this.setState({display: 'box'})
   }
 
@@ -31,7 +31,8 @@ export default class App extends React.Component {
 
     if (this.state.display === 'box') {
       return (
-        <div>
+        <div className="container">
+          <h1>Random Color Generator</h1>
           <MyBox />
           <Button onClick={e => this.handleClick(e)} />
         </div>
@@ -39,8 +40,11 @@ export default class App extends React.Component {
     }
     if (this.state.display === 'button') {
       return (
-        <Button onClick={e => this.handleClick(e)} />
+        <div className="container">
+          <h1>Random Color Generator</h1>
+          <Button onClick={e => this.handleClick(e)} />
+        </div>
       )
     }
   }
-}  
+}
