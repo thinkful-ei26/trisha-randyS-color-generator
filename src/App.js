@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from './Button';
-import ColorBox from './ColorBox';
+import RedBox from './red-box';
+import GreenBox from './green-box';
+import BlueBox from './blue-box';
 
 export default class App extends React.Component {
 
@@ -9,8 +11,13 @@ export default class App extends React.Component {
 
     this.state = {
       display: 'button'
-
     }
+  }
+
+  randomBoxGenerator() {
+    const boxes = [GreenBox, BlueBox, RedBox];
+    const num = Math.floor(Math.random() * Math.floor(3));
+    return boxes[num];
   }
 
   handleClick() {
@@ -18,10 +25,17 @@ export default class App extends React.Component {
     this.setState({display: 'box'})
   }
 
-// export default function App()  {
   render() {
+
+    const MyBox = this.randomBoxGenerator();
+
     if (this.state.display === 'box') {
-      return <ColorBox />
+      return (
+        <div>
+          <MyBox />
+          <Button onClick={e => this.handleClick(e)} />
+        </div>
+      )
     }
     if (this.state.display === 'button') {
       return (
