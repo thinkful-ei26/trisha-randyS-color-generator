@@ -11,7 +11,8 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      display: 'button'
+      box1Clicked: RedBox,
+      box2Clicked: GreenBox
     }
   }
 
@@ -21,30 +22,37 @@ export default class App extends React.Component {
     return boxes[num];
   }
 
-  handleClick() {
-    this.setState({display: 'box'})
+  handleBox1Click() {
+    this.setState({
+      box1Clicked: this.randomBoxGenerator()
+    })
   }
 
+  handleBox2Click() {
+    this.setState({
+      box2Clicked: this.randomBoxGenerator()
+    })
+  }
+
+//1) On button click, randomBoxGenerator will change the state the box whose button was clicked
+
   render() {
+  
+    const MyBox1 = this.state.box1Clicked;
+    const MyBox2 = this.state.box2Clicked;
 
-    const MyBox = this.randomBoxGenerator();
-
-    if (this.state.display === 'box') {
       return (
         <div className="container">
           <h1>Random Color Generator</h1>
-          <MyBox />
-          <Button onClick={e => this.handleClick(e)} />
+          <div className="box1">
+            <MyBox1 />
+            <Button onClick={e => this.handleBox1Click(e)} />
+          </div>
+          <div className="box2">
+            <MyBox2 />
+            <Button onClick={e => this.handleBox2Click(e)} />
+          </div>             
         </div>
       )
-    }
-    if (this.state.display === 'button') {
-      return (
-        <div className="container">
-          <h1>Random Color Generator</h1>
-          <Button onClick={e => this.handleClick(e)} />
-        </div>
-      )
-    }
   }
 }
