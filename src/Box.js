@@ -17,16 +17,17 @@ export default class Box extends React.Component {
     return colors[index];
   }
 
-
   handleClick() {
+    console.log('from Box component')
     this.setState({
       color: this.randomColorGenerator()
     })
   }
   
   render() {
+
     return (
-      <div className='box' style={{backgroundColor: this.state.color}}>
+      <div className='box' style={{backgroundColor: this.props.color}} >
         <button onClick={(e) => this.handleClick(e)}>Change</button> 
       </div>)
     }

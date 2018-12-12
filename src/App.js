@@ -1,32 +1,41 @@
 import React from 'react';
-// import Button from './Button';
-// import BlueBox from './blue-box';
-// import GreenBox from './green-box';
-// import RedBox from './red-box';
 import Box from './Box';
-
 import './app.css'
 
-export default class App extends React.Component {
+export default class App extends React.Component  {
 
   constructor(props) {
     super(props);
 
-    // dont put components in state
+    //store state for three boxes
     this.state = {
-      // box1Clicked: 'red',
-      // box2Clicked: 'green'
+      boxColor: 'red'
     }
   }
 
-  render() {
-    return (
-      <div className="container">
-        <h1>Random Color Generator</h1>
-          <Box />
-          <Box />
-          <Box />
-      </div>
-    )
+  randomColorGenerator() {
+    const colors = ['red', 'brown', 'blue', 'green', 'yellow', 'orange', 'black'];
+    const index = Math.floor(Math.random() * 7);
+    return colors[index];
+  }
+
+  handleClick() {
+    this.setState({
+      color: this.randomColorGenerator()
+    })
+  }
+
+  render() {return (
+    <div className="container">
+      <h1>Random Color Generator</h1>
+        <Box color={this.randomColorGenerator()}/>
+        <Box color={this.randomColorGenerator()}/>
+        <Box color={this.randomColorGenerator()}/>
+        <button 
+        onClick={(e) => this.handleClick(e)}>
+          Change All
+        </button> 
+    </div>
+  )
   }
 }
